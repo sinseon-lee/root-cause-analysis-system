@@ -1,47 +1,22 @@
 const mongoose = require("mongoose");
-const taskSchema = new mongoose.Schema(
+
+const Schema = mongoose.Schema;
+
+let meSchema = new Schema(
   {
     name: "string",
+    type: "string",
+    ipAddress: "string",
+    location: "string",
     description: "string",
+    ssh_id: "string",
+    ssh_pw: "string",
     createDate: "date",
     updatedDate: "date",
-    createdBy: "string",
-    updatedBy: "string",
   },
-  { timestamps: { createDate: "created_at", updatedDate: "updated_at" } }
+  { timestamps: { createDate: "created_at", updatedDate: "updated_at" } },
+  { versionKey: false }
 );
 
-const Task = mongoose.model("todos", taskSchema);
-
-module.exports = {
-  Task,
-};
-// const Schema = mongoose.Schema;
-
-// let meSchema = new Schema({
-//     name: {
-//         type: String
-//     },
-//     type: {
-//         type: String
-//     },
-//     ipAddress: {
-//         type: String
-//     },
-//     location: {
-//         type: String
-//     },
-//     description: {
-//         type: String
-//     },
-//     ssh_id: {
-//         type: String
-//     },
-//     ssh_pw: {
-//         type: String
-//     },
-// }, {
-//   collection: 'MEs'
-// })
-
-// module.exports = mongoose.model('ManagedElement', meSchema)
+const ManagedElement = mongoose.model("ManagedElement", meSchema);
+module.exports = { ManagedElement };

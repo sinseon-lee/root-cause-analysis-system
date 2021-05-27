@@ -3,7 +3,7 @@
     "info": {
         "description": "This is a simple example NodeJS API project to demonstrate Swagger Documentation",
         "version": "1.0.0",
-        "title": "Tasks API",
+        "title": "ManagedElements API",
         "contact": {
             "email": "abc@gmail.com"
         },
@@ -16,10 +16,10 @@
     "host": "localhost:3081",
     "basePath": "/api",
     "paths" : {
-        "/tasks" : {
+        "/managedElements" : {
             "get" : {
-                "summary" : "Get all the tasks",
-                "description": "Get all the tasks",
+                "summary" : "Get all the managedElements",
+                "description": "Get all the managedElements",
                 "produces": ["application/json"],
                 "parameters": [],
                 "responses": {
@@ -28,7 +28,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/todosResponse"
+                                "$ref": "#/definitions/managedElementsResponse"
                             }
                         }
                     },
@@ -41,24 +41,24 @@
                 }
             }
         },
-        "/task" : {
+        "/managedElement" : {
             "post" : {
-                "summary" : "Save the task",
-                "description": "Save the task",
+                "summary" : "Save the managedElement",
+                "description": "Save the managedElement",
                 "produces": ["application/json"],
                 "consumes": ["application/json"],
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "task object",
+                        "description": "managedElement object",
                         "required": true,
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "task" : {
+                                "managedElement" : {
                                     "type": "object",
-                                    "$ref": "#/definitions/Task"
+                                    "$ref": "#/definitions/ManagedElement"
                                 } 
                             }
                         }
@@ -70,7 +70,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/todosResponse"
+                                "$ref": "#/definitions/managedElementsResponse"
                             }
                         }
                     },
@@ -83,30 +83,30 @@
                 }
             }
         },
-        "/task/" : {
+        "/managedElement/" : {
             "put" : {
-                "summary" : "Update the tasks",
-                "description": "Update the tasks",
+                "summary" : "Update the managedElements",
+                "description": "Update the managedElements",
                 "produces": ["application/json"],
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "task id that needs to be deleted",
+                        "description": "managedElement id that needs to be deleted",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "task object",
+                        "description": "managedElement object",
                         "required": true,
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "task" : {
+                                "managedElement" : {
                                     "type": "object",
-                                    "$ref": "#/definitions/Task"
+                                    "$ref": "#/definitions/ManagedElement"
                                 } 
                             }
                         }
@@ -118,7 +118,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/todosResponse"
+                                "$ref": "#/definitions/managedElementsResponse"
                             }
                         }
                     },
@@ -131,16 +131,16 @@
                 }
             }
         },
-        "/task/{id}" : {
+        "/managedElement/{id}" : {
             "delete" : {
-                "summary" : "Delete the task",
-                "description": "Delete the task",
+                "summary" : "Delete the managedElement",
+                "description": "Delete the managedElement",
                 "produces": ["application/json"],
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "task id that needs to be deleted",
+                        "description": "managedElement id that needs to be deleted",
                         "required": true,
                         "type": "string"
                     }
@@ -151,7 +151,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/todosResponse"
+                                "$ref": "#/definitions/managedElementsResponse"
                             }
                         }
                     },
@@ -166,7 +166,7 @@
         }
     }, 
     "definitions": {
-        "todosResponse": {
+        "managedElementsResponse": {
             "type": "object",
             "properties": {
                 "_id": {
@@ -178,36 +178,53 @@
                 "description": {
                     "type": "string"
                 },
-                "createdBy": {
-                    "type": "string"
+                "type": {
+                  "type": "string"
+                },
+                "ipAddress": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "ssh_id": {
+                  "type": "string"
+                },
+                "ssh_pw": {
+                  "type": "string"
                 },
                 "createdAt": {
                     "type": "string"
                 },
                 "updatedAt": {
                     "type": "string"
-                },
-                "updatedBy": {
-                    "type": "string"
                 }
             }
         },
-        "Task": {
+        "ManagedElement": {
             "type": "object",
             "properties": {
-                "task": {
-                    "type": {
-                        "name": {
-                            "type": "string"
-                        },
-                        "description": {
-                            "type": "string"
-                        },
-                        "createdBy": {
-                            "type": "string"
-                        }
-                    }
-                }
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                  "type": {
+                    "type": "string"
+                  },
+                  "ipAddress": {
+                    "type": "string"
+                  },
+                "location": {
+                  "type": "string"
+                },
+                "ssh_id": {
+                  "type": "string"
+                },
+                "ssh_pw": {
+                  "type": "string"
+                }  
             }
         },
         "InvalidResponse": {
