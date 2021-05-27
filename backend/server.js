@@ -1,52 +1,45 @@
-let express = require("express"),
-  cors = require("cors"),
-  mongoose = require("mongoose"),
-  database = require("./config/database");
+const express = require("express");
 const bodyParser = require("body-parser");
 require("dotenv").config();
+const fs = require("fs");
+
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
+const customCss = fs.readFileSync(process.cwd() + "/swagger.css", "utf8");
+
+const taskController = require("./controller/task.controller");
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, { customCss })
+);
 
-// Connect mongoDB
-mongoose.Promise = global.Promise;
-mongoose
-  .connect(database.db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(
-    () => {
-      console.log("Database connected");
-    },
-    (error) => {
-      console.log("Database could't be connected to: " + error);
-    }
-  );
-
-const meAPI = require("./router/me.route");
-
-app.use(cors());
-
-// API
-app.use("/api", meAPI);
-
-// Create port
-const port = process.env.PORT || 4000;
-const server = app.listen(port, () => {
-  console.log("Connected to port " + port);
+app.get("/api/tasks", (req, res) => {
+  taskController.getTasks().then((data) => res.json(data));
 });
 
-// Find 404
-app.use((req, res, next) => {
-  next(createError(404));
+app.post("/api/task", (req, res) => {
+  console.log(req.body);
+  taskController.createTask(req.body.task).then((data) => res.json(data));
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-  console.error(err.message);
-  if (!err.statusCode) err.statusCode = 500;
-  res.status(err.statusCode).send(err.message);
+app.put("/api/task", (req, res) => {
+  taskController.updateTask(req.body.task).then((data) => res.json(data));
+});
+
+app.delete("/api/task/:id", (req, res) => {
+  taskController.deleteTask(req.params.id).then((data) => res.json(data));
+});
+
+app.get("/", (req, res) => {
+  res.send(`<h1>API Works !!!</h1>`);
+});
+
+app.listen(port, () => {
+  console.log(`Server listening on the port  ${port}`);
 });

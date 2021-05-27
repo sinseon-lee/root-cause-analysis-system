@@ -16,6 +16,8 @@
     "express": "^4.17.1",
     "mongoose": "^5.12.10",
     "nodemon": "^2.0.7",
-    "pine": "^1.1.1"
+    "pine": "^1.1.1",
+    "swagger-jsdoc": "^7.0.0-rc.6",
+    "swagger-ui-express": "^4.1.6"
   }
 }
