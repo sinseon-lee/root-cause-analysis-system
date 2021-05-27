@@ -1,0 +1,243 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a simple example NodeJS API project to demonstrate Swagger Documentation",
+        "version": "1.0.0",
+        "title": "ManagedElements API",
+        "contact": {
+            "email": "abc@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "schemes": ["http"],
+    "host": "localhost:3081",
+    "basePath": "/api",
+    "paths" : {
+        "/managedElements" : {
+            "get" : {
+                "summary" : "Get all the managedElements",
+                "description": "Get all the managedElements",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/managedElementsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/managedElement" : {
+            "post" : {
+                "summary" : "Save the managedElement",
+                "description": "Save the managedElement",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "managedElement object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "managedElement" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/ManagedElement"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/managedElementsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/managedElement/" : {
+            "put" : {
+                "summary" : "Update the managedElements",
+                "description": "Update the managedElements",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "managedElement id that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "managedElement object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "managedElement" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/ManagedElement"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/managedElementsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/managedElement/{id}" : {
+            "delete" : {
+                "summary" : "Delete the managedElement",
+                "description": "Delete the managedElement",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "managedElement id that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/managedElementsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+    }, 
+    "definitions": {
+        "managedElementsResponse": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                     "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "ipAddress": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "ssh_id": {
+                  "type": "string"
+                },
+                "ssh_pw": {
+                  "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "ManagedElement": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                  "type": {
+                    "type": "string"
+                  },
+                  "ipAddress": {
+                    "type": "string"
+                  },
+                "location": {
+                  "type": "string"
+                },
+                "ssh_id": {
+                  "type": "string"
+                },
+                "ssh_pw": {
+                  "type": "string"
+                }  
+            }
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+
+        }
+    }
+}
