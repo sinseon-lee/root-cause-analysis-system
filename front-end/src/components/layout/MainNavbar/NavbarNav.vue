@@ -15,7 +15,7 @@
             </div>
           </div>
           <div class="notification__content">
-            <span class="notification__category">Analytics</span>
+            <span class="notification__category">RCA Results</span>
             <p>Your website’s active users count increased by <span class="text-success text-semibold">28%</span> in the last week. Great job!</p>
           </div>
         </d-dropdown-item>
@@ -26,13 +26,14 @@
             </div>
           </div>
           <div class="notification__content">
-            <span class="notification__category">Sales</span>
+            <span class="notification__category">RCA Results</span>
             <p>Last week your store’s sales count decreased by <span class="text-danger text-semibold">5.52%</span>. It could have been worse!</p>
           </div>
         </d-dropdown-item>
         <d-dropdown-item class="notification__all text-center">View all Notifications</d-dropdown-item>
       </d-collapse>
     </li>
+    <!--[if mso]>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle text-nowrap px-3" v-d-toggle.user-actions>
         <img class="user-avatar rounded-circle mr-2" src="@/assets/images/avatars/0.jpg" alt="User Avatar"> <span class="d-none d-md-inline-block">Sierra Brooks</span>
@@ -48,6 +49,7 @@
         </d-dropdown-item>
       </d-collapse>
     </li>
+    <[endif]-->
   </d-navbar-nav>
 </template>
 

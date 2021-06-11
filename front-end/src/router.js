@@ -8,6 +8,10 @@ import Errors from './views/Errors.vue';
 import ComponentsOverview from './views/ComponentsOverview.vue';
 import Tables from './views/Tables.vue';
 import BlogPosts from './views/BlogPosts.vue';
+import Dashboard from './views/Dashboard.vue';
+import ManagedElements from './views/ManagedElements.vue';
+import Logs from './views/Logs.vue';
+import RCAResults from './views/RCAResults.vue';
 
 Vue.use(Router);
 
@@ -22,7 +26,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/blog-overview',
+      redirect: '/dashboard',
     },
     {
       path: '/blog-overview',
@@ -61,6 +65,26 @@ export default new Router({
     }, {
       path: '*',
       redirect: '/errors',
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard,
+    },
+    {
+      path: '/managed-elements',
+      name: 'managed-elements',
+      component: ManagedElements,
+    },
+    {
+      path: '/logs',
+      name: 'logs',
+      component: Logs,
+    },
+    {
+      path: '/rca-results',
+      name: 'rca-results',
+      component: RCAResults,
     },
   ],
 });
