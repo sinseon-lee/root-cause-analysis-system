@@ -23,7 +23,7 @@ export default function () {
     to: {
       name: 'rca-results',
     },
-  }, {
+  }/*, {
     title: 'Blog Dashboard',
     to: {
       name: 'blog-overview',
@@ -66,5 +66,5 @@ export default function () {
     to: {
       name: 'errors',
     },
-  }];
+  }*/];
 }
