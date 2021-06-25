@@ -12,9 +12,6 @@
     <div class="row">
       <div class="col">
         <div class="card card-small mb-4">
-          <div class="card-header border-bottom">
-            <d-button size="sm" outline theme="secondary" class="mb-2 mr-1">add new element</d-button>
-          </div>
           <div class="card-body p-0 pb-3 text-center">
             <table class="table mb-0">
               <thead class="bg-light">
@@ -76,9 +73,52 @@
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
+                  <td>{{managedElements}}</td>
+                  <td>?</td>
+                  <td>??</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Default Light Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card card-small mb-4">
+          <div class="card-header border-bottom">
+            <d-button size="sm" outline theme="secondary" class="mb-2 mr-1">+ add new element</d-button>
+          </div>
+          <div class="card-body p-0 pb-3 text-center">
+            <table class="table mb-0">
+              <thead class="bg-light">
+                <tr>
+                  <th scope="col" class="border-0">id</th>
+                  <th scope="col" class="border-0">name</th>
+                  <th scope="col" class="border-0">type</th>
+                  <th scope="col" class="border-0">state</th>
+                  <th scope="col" class="border-0">ipAddress</th>
+                  <th scope="col" class="border-0">location</th>
+                  <th scope="col" class="border-0">usage</th>
+                  <th scope="col" class="border-0">description</th>
+                  <th scope="col" class="border-0">ssh_id</th>
+                  <th scope="col" class="border-0">ssh_pw</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><d-form-input type="text" id="addId" placeholder="id" value="" /></td>
+                  <td><d-form-input type="text" id="addName" placeholder="name" value="" /></td>
+                  <td><d-form-input type="text" id="addType" placeholder="type" value="" /></td>
+                  <td><d-form-input type="text" id="addState" placeholder="state" value="" /></td>
+                  <td><d-form-input type="text" id="addIpAddress" placeholder="ipAddress" value="" /></td>
+                  <td><d-form-input type="text" id="addLocation" placeholder="location" value="" /></td>
+                  <td><d-form-input type="text" id="addUsage" placeholder="usage" value="" /></td>
+                  <td><d-form-input type="text" id="addDescription" placeholder="description" value="" /></td>
+                  <td><d-form-input type="text" id="addSSHId" placeholder="ssh_id" value="" /></td>
+                  <td><d-form-input type="text" id="addSSHPw" placeholder="ssh_pw" value="" /></td>
                 </tr>
               </tbody>
             </table>
@@ -89,3 +129,20 @@
 
   </div>
 </template>
+
+
+<script>
+export default {
+  created() {
+    this.$http.get('/api/managedElements/')
+      .then((response) => {
+        this.managedElements = response.data;
+      });
+  },
+  data() {
+    return {
+      managedElements: [],
+    };
+  },
+};
+</script>
