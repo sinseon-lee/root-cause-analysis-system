@@ -1,0 +1,49 @@
+ {
+    "id": 0,
+    "name": "host1",
+    "type": "host",
+    "state": "started",
+    "ipAddress": "-",
+    "location": "-",
+    "usage": "-",
+    "description": "-",
+    "ssh_id": "-",
+    "ssh_pw": "-"
+  },
+  {
+    "id": 1,
+    "name": "host2",
+    "type": "host",
+    "state": "started",
+    "ipAddress": "-",
+    "location": "-",
+    "usage": "-",
+    "description": "-",
+    "ssh_id": "-",
+    "ssh_pw": "-"
+  },
+  {
+    "id": 2,
+    "name": "switch1",
+    "type": "switch",
+    "state": "on",
+    "ipAddress": "-",
+    "location": "-",
+    "usage": "-",
+    "description": "-",
+    "ssh_id": "-",
+    "ssh_pw": "-"
+  },
+  {
+    "id": 3,
+    "name": "switch2",
+    "type": "switch",
+    "state": "-",
+    "ipAddress": "-",
+    "location": "-",
+    "usage": "-",
+    "description": "-",
+    "ssh_id": "-",
+    "ssh_pw": "-"
+  }
+]
