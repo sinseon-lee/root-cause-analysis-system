@@ -89,7 +89,7 @@
       <div class="col">
         <div class="card card-small mb-4">
           <div class="card-header border-bottom">
-            <d-button size="sm" outline theme="secondary" class="mb-2 mr-1">+ add new element</d-button>
+            <d-button @click="addNewElement" ssize="sm" outline theme="secondary" class="mb-2 mr-1">+ add new element</d-button>
           </div>
           <div class="card-body p-0 pb-3 text-center">
             <table class="table mb-0">
@@ -130,19 +130,24 @@
   </div>
 </template>
 
-
 <script>
-export default {
-  created() {
-    this.$http.get('/api/managedElements/')
-      .then((response) => {
-        this.managedElements = response.data;
-      });
-  },
-  data() {
-    return {
-      managedElements: [],
-    };
-  },
-};
+// export default {
+//  created() {
+//    this.$http.get('/api/managedElements/')
+//      .then((response) => {
+//        this.managedElements = response.data;
+//      });
+//  },
+//  data() {
+//    return {
+//      managedElements: [],
+//    };
+//  },
+//  addNewElement() {
+//    console.log('Click addNewElement');
+//
+//    axios.get('/api/managedElements')
+//      .then((res) => { console.log(res.data); });
+//  },
+// };
 </script>

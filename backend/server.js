@@ -11,6 +11,7 @@ const managedElementController = require("./controller/managedElement.controller
 
 const app = express();
 const port = process.env.PORT || 3000;
+var path = require('path');
 
 app.use(bodyParser.json());
 app.use(
@@ -43,7 +44,8 @@ app.delete("/api/managedElement/:id", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send(`<h1>API Works !!!</h1>`);
+  // res.send(`<h1>API Works !!!</h1>`);
+  res.sendfile(path.join(__dirname, '/public/index.html'));
 });
 
 app.listen(port, () => {
