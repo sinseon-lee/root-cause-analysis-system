@@ -9,6 +9,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "next-ui": "^0.9.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.1.3",
     "chart.js": "^2.7.2",
