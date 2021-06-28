@@ -179,15 +179,3 @@ export default {
   },
 };
 </script>
-
-{
-  "managedElement": {
-    "name": "string",
-    "description": "string",
-    "type": "string",
-    "ipAddress": "string",
-    "location": "string",
-    "ssh_id": "string",
-    "ssh_pw": "string"
-  }
-}
