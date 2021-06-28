@@ -23,38 +23,20 @@
                   <th scope="col" class="border-0">time</th>
                   <th scope="col" class="border-0">type</th>
                   <th scope="col" class="border-0">isError</th>
-                  <th scope="col" class="border-0">element</th>
+                  <th scope="col" class="border-0">element id</th>
                   <th scope="col" class="border-0">location</th>
                   <th scope="col" class="border-0">message</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>0</td>
-                  <td>2021-05-22T04:40:27.222000Z</td>
-                  <td>-</td>
-                  <td>False</td>
-                  <td>1</td>
-                  <td>-</td>
-                  <td>60158 INFO System-Management: All xGrid administrator actions are logged using this meesage</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>2021-05-22:T04:47:08.494000Z</td>
-                  <td>-</td>
-                  <td>True</td>
-                  <td>2</td>
-                  <td>-</td>
-                  <td>24317 ERROR External-Active-Directory: LDAP search in domain failed</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>2021-05-22:T04:48:48.812000Z</td>
-                  <td>-</td>
-                  <td>False</td>
-                  <td>2</td>
-                  <td>-</td>
-                  <td>52055 NOTICE Distributed-Management: Local mode rquest</td>
+                <tr v-for="log in logs" v-bind:key="log.id">
+                  <td>{{ log.id }}</td>
+                  <td>{{ log.time }}</td>
+                  <td>{{ log.type }}</td>
+                  <td>{{ log.isError }}</td>
+                  <td>{{ log.elementId }}</td>
+                  <td>{{ log.location }}</td>
+                  <td>{{ log.message }}</td>
                 </tr>
               </tbody>
             </table>
@@ -65,3 +47,42 @@
 
   </div>
 </template>
+
+
+<script>
+export default {
+  data() {
+    return {
+      logs: [
+        {
+          id: '0',
+          time: '2021-05-22T04:40:27.222000Z',
+          type: '-',
+          isError: 'False',
+          elementId: '60d9e2292737581b1d4f94e6',
+          location: '-',
+          message: '60158 INFO System-Management: All xGrid administrator actions are logged using this meesage',
+        },
+        {
+          id: '1',
+          time: '2021-05-22:T04:47:08.494000Z',
+          type: '-',
+          isError: 'True',
+          elementId: '60d9e2292737581b1d4f94e6',
+          location: '-',
+          message: '24317 ERROR External-Active-Directory: LDAP search in domain failed',
+        },
+        {
+          id: '2',
+          time: '2021-05-22:T04:48:48.812000Z',
+          type: '-',
+          isError: 'False',
+          elementId: '60d9e2292737581b1d4f94e6',
+          location: '-',
+          message: '52055 NOTICE Distributed-Management: Local mode rquest',
+        },
+      ],
+    };
+  },
+};
+</script>

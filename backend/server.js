@@ -45,7 +45,7 @@ app.delete("/api/managedElement/:id", (req, res) => {
 
 app.get("/", (req, res) => {
   // res.send(`<h1>API Works !!!</h1>`);
-  res.sendfile(path.join(__dirname, '/public/index.html'));
+  res.sendFile(path.join(__dirname, './public', 'index.html'));
 });
 
 app.listen(port, () => {

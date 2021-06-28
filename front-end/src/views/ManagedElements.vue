@@ -59,7 +59,6 @@
             <table class="table mb-0">
               <thead class="bg-light">
                 <tr>
-                  <th scope="col" class="border-0">id</th>
                   <th scope="col" class="border-0">name</th>
                   <th scope="col" class="border-0">type</th>
                   <th scope="col" class="border-0">state</th>
@@ -73,7 +72,6 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><d-form-input v-model="newId" type="text" placeholder="id" value="" /> </td>
                   <td><d-form-input v-model="newName" type="text" placeholder="name" value="" /></td>
                   <td><d-form-input v-model="newType" type="text" placeholder="type" value="" /></td>
                   <td><d-form-input v-model="newState" type="text" placeholder="state" value="" /></td>
@@ -122,9 +120,16 @@ export default {
       });
 
     console.log(this.managedElements);
-    // this.$http.delete('/api/managedElement/60d96d52e9ca7c2336c3b8b1');
-    // this.$http.delete('/api/managedElement/60d96ff9e9ca7c2336c3b8b8');
-    // this.$http.delete('/api/managedElement/60d97ba383c0450cd2a32992');
+    /*
+    this.$http.delete('/api/managedElement/60d993b35fe46f30a0176ffc');
+    this.$http.delete('/api/managedElement/60d9bab7f598fe0ebb9c398b');
+    this.$http.delete('/api/managedElement/60d9d8332737581b1d4f946a');
+    this.$http.delete('/api/managedElement/60d9df2e2737581b1d4f94a5');
+    this.$http.delete('/api/managedElement/60d9df712737581b1d4f94a9');
+    this.$http.delete('/api/managedElement/60d9df812737581b1d4f94ac');
+    this.$http.delete('/api/managedElement/60d9df9c2737581b1d4f94b0');
+    this.$http.delete('/api/managedElement/60d9dfb52737581b1d4f94b4');
+    */
   },
   methods: {
     addNewElement() {
@@ -132,23 +137,40 @@ export default {
       console.log(this.newId);
 
       const newElement = {
-        name: this.newName,
-        description: this.newDescription,
-        type: this.newType,
-        ipAddress: this.newIpAddress,
-        location: this.newLocation,
-        ssh_id: this.newSSHId,
-        ssh_pw: this.newSSHPw,
+        managedElement: {
+          name: this.newName,
+          type: this.newType,
+          ipAddress: this.newIpAddress,
+          location: this.newLocation,
+          description: this.newDescription,
+          ssh_id: this.newSSHId,
+          ssh_pw: this.newSSHPw,
+        },
       };
 
       console.log('newElement :::');
       console.log(newElement);
-      // this.$http.post('/api/managedElement', newElement)
-      //   .then((response) => {
-      //     console.log('response.data :');
-      //     console.log(response.data);
-      //   });
 
+      this.$http.post('/api/managedElement', newElement)
+        .then((response) => {
+          console.log('response.data :');
+          console.log(response.data);
+        });
+
+      /*
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newElement),
+      };
+
+      fetch('/api/managedElement', requestOptions)
+        .then((response) => {
+          console.log(response);
+          response.json();
+          console.log(response);
+        });
+      */
       this.$http.get('/api/managedElements')
         .then((response) => {
           this.managedElements = response.data;
@@ -157,3 +179,15 @@ export default {
   },
 };
 </script>
+
+{
+  "managedElement": {
+    "name": "string",
+    "description": "string",
+    "type": "string",
+    "ipAddress": "string",
+    "location": "string",
+    "ssh_id": "string",
+    "ssh_pw": "string"
+  }
+}

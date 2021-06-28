@@ -27,11 +27,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>24317 ERROR External-Active-Directory: LDAP search in domain failed</td>
+                <tr v-for="RCAResult in RCAResults" v-bind:key="RCAResult.id">
+                  <td>{{ RCAResult.id }}</td>
+                  <td>{{ RCAResult.rootCauseErrorId }}</td>
+                  <td>{{ RCAResult.rootCauseElementId }}</td>
+                  <td>{{ RCAResult.message }}</td>
                   <td>
                     <d-button size="sm" outline theme="secondary" class="mb-2 mr-1">show all logs</d-button>
                   </td>
@@ -45,3 +45,21 @@
 
   </div>
 </template>
+
+
+<script>
+export default {
+  data() {
+    return {
+      RCAResults: [
+        {
+          id: '0',
+          rootCauseErrorId: '1',
+          rootCauseElementId: '60d9e2292737581b1d4f94e6',
+          message: '24317 ERROR External-Active-Directory: LDAP search in domain failed',
+        },
+      ],
+    };
+  },
+};
+</script>
