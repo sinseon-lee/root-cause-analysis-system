@@ -8,7 +8,7 @@
 
 	// load topology data from app/data.js
 	var topoData;
-	topoData=JSON.parse(window.localStorage.getItem('topoData'));
+	topoData = JSON.parse(window.localStorage.getItem('topoData'));
 	console.log("topoData:")
 	console.log(topoData);
 	topology.data(topoData);

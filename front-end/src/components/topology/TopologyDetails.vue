@@ -83,6 +83,11 @@ export default {
             source: 1,
             target: 3,
           },
+          {
+            id: 5,
+            source: 2,
+            target: 3,
+          },
         ],
       };
       localStorage.setItem('topoData', JSON.stringify(topologyData));
