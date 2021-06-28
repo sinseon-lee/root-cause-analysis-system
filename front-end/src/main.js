@@ -14,12 +14,15 @@ import router from './router';
 // Layouts
 import Default from '@/layouts/Default.vue';
 
+import axios from 'axios';
+
 ShardsVue.install(Vue);
 
 Vue.component('default-layout', Default);
 
 Vue.config.productionTip = false;
 Vue.prototype.$eventHub = new Vue();
+Vue.prototype.$http = axios;
 
 new Vue({
   router,

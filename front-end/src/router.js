@@ -12,6 +12,7 @@ import Dashboard from './views/Dashboard.vue';
 import ManagedElements from './views/ManagedElements.vue';
 import Logs from './views/Logs.vue';
 import RCAResults from './views/RCAResults.vue';
+import Topology from './views/Topology.vue';
 
 Vue.use(Router);
 
@@ -87,6 +88,11 @@ export default new Router({
       path: '/rca-results',
       name: 'rca-results',
       component: RCAResults,
+    },
+    {
+      path: '/topology',
+      name: 'topology',
+      component: Topology,
     },
   ],
 });

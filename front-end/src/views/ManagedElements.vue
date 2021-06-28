@@ -29,53 +29,17 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>0</td>
-                  <td>host1</td>
-                  <td>host</td>
-                  <td>started</td>
+                <tr v-for="managedElement in managedElements" v-bind:key="managedElement._id">
+                  <td>{{ managedElement._id }}</td>
+                  <td>{{ managedElement.name }}</td>
+                  <td>{{ managedElement.type }}</td>
                   <td>-</td>
+                  <td>{{ managedElement.ipAddress }}</td>
+                  <td>{{ managedElement.location }}</td>
                   <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>host2</td>
-                  <td>host</td>
-                  <td>started</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>switch1</td>
-                  <td>switch</td>
-                  <td>on</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>switch2</td>
-                  <td>switch</td>
-                  <td>on</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>{{managedElements}}</td>
-                  <td>?</td>
-                  <td>??</td>
+                  <td>{{ managedElement.description }}</td>
+                  <td>{{ managedElement.ssh_id }}</td>
+                  <td>{{ managedElement.ssh_pw }}</td>
                 </tr>
               </tbody>
             </table>
@@ -109,16 +73,16 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><d-form-input type="text" id="addId" placeholder="id" value="" /></td>
-                  <td><d-form-input type="text" id="addName" placeholder="name" value="" /></td>
-                  <td><d-form-input type="text" id="addType" placeholder="type" value="" /></td>
-                  <td><d-form-input type="text" id="addState" placeholder="state" value="" /></td>
-                  <td><d-form-input type="text" id="addIpAddress" placeholder="ipAddress" value="" /></td>
-                  <td><d-form-input type="text" id="addLocation" placeholder="location" value="" /></td>
-                  <td><d-form-input type="text" id="addUsage" placeholder="usage" value="" /></td>
-                  <td><d-form-input type="text" id="addDescription" placeholder="description" value="" /></td>
-                  <td><d-form-input type="text" id="addSSHId" placeholder="ssh_id" value="" /></td>
-                  <td><d-form-input type="text" id="addSSHPw" placeholder="ssh_pw" value="" /></td>
+                  <td><d-form-input v-model="newId" type="text" placeholder="id" value="" /> </td>
+                  <td><d-form-input v-model="newName" type="text" placeholder="name" value="" /></td>
+                  <td><d-form-input v-model="newType" type="text" placeholder="type" value="" /></td>
+                  <td><d-form-input v-model="newState" type="text" placeholder="state" value="" /></td>
+                  <td><d-form-input v-model="newIpAddress" type="text" placeholder="ipAddress" value="" /></td>
+                  <td><d-form-input v-model="newLocation" type="text" placeholder="location" value="" /></td>
+                  <td><d-form-input v-model="newUsage" type="text" placeholder="usage" value="" /></td>
+                  <td><d-form-input v-model="newDescription" type="text" placeholder="description" value="" /></td>
+                  <td><d-form-input v-model="newSSHId" type="text" placeholder="ssh_id" value="" /></td>
+                  <td><d-form-input v-model="newSSHPw" type="text" placeholder="ssh_pw" value="" /></td>
                 </tr>
               </tbody>
             </table>
@@ -131,23 +95,65 @@
 </template>
 
 <script>
-// export default {
-//  created() {
-//    this.$http.get('/api/managedElements/')
-//      .then((response) => {
-//        this.managedElements = response.data;
-//      });
-//  },
-//  data() {
-//    return {
-//      managedElements: [],
-//    };
-//  },
-//  addNewElement() {
-//    console.log('Click addNewElement');
-//
-//    axios.get('/api/managedElements')
-//      .then((res) => { console.log(res.data); });
-//  },
-// };
+export default {
+  data() {
+    return {
+      managedElements: [],
+      newId: '',
+      newName: '',
+      newType: '',
+      newState: '',
+      newIpAddress: '',
+      newLocation: '',
+      newUsage: '',
+      newDescription: '',
+      newSSHId: '',
+      newSSHPw: '',
+    };
+  },
+  created() {
+    console.log('created');
+
+    // this.managedElements = this.$http.get('/api/managedElements').data;
+
+    this.$http.get('/api/managedElements')
+      .then((response) => {
+        this.managedElements = response.data;
+      });
+
+    console.log(this.managedElements);
+    // this.$http.delete('/api/managedElement/60d96d52e9ca7c2336c3b8b1');
+    // this.$http.delete('/api/managedElement/60d96ff9e9ca7c2336c3b8b8');
+    // this.$http.delete('/api/managedElement/60d97ba383c0450cd2a32992');
+  },
+  methods: {
+    addNewElement() {
+      console.log('Click addNewElement');
+      console.log(this.newId);
+
+      const newElement = {
+        name: this.newName,
+        description: this.newDescription,
+        type: this.newType,
+        ipAddress: this.newIpAddress,
+        location: this.newLocation,
+        ssh_id: this.newSSHId,
+        ssh_pw: this.newSSHPw,
+      };
+
+      console.log('newElement :::');
+      console.log(newElement);
+      // this.$http.post('/api/managedElement', newElement)
+      //   .then((response) => {
+      //     console.log('response.data :');
+      //     console.log(response.data);
+      //   });
+
+      this.$http.get('/api/managedElements')
+        .then((response) => {
+          this.managedElements = response.data;
+        });
+    },
+  },
+};
 </script>
