@@ -24,6 +24,13 @@ export default function () {
       name: 'rca-results',
     },
   },
+  {
+    title: 'Topology',
+    htmlBefore: '<i class="material-icons">vertical_split</i>',
+    to: {
+      name: 'topology',
+    },
+  },
   /* , {
     title: 'Blog Dashboard',
     to: {

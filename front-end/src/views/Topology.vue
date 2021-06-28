@@ -14,7 +14,6 @@
       <d-col >
         <topologyDetails />
       </d-col>
-     
     </d-row>
   </d-container>
 </template>
@@ -22,12 +21,10 @@
 <script>
 import TopologyDetails from '@/components/topology/TopologyDetails.vue';
 
-
 export default {
   name: 'topology',
   components: {
     topologyDetails: TopologyDetails,
-   
   },
 };
 </script>

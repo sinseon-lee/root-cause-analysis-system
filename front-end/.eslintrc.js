@@ -15,6 +15,7 @@ module.exports = {
     'no-underscore-dangle': 0, // Chart.js uses underscore dangles (_) internally.
     'import/no-unresolved': 0, // False positives regarding imports that use aliases.
     'linebreak-style': 0,
+    'no-tabs': 'off',
   },
   overrides: [
     {
