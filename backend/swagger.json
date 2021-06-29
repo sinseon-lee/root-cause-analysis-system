@@ -12,15 +12,57 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "schemes": ["http"],
+    "schemes": [
+        "http"
+    ],
     "host": "localhost:3081",
     "basePath": "/api",
-    "paths" : {
-        "/managedElements" : {
-            "get" : {
-                "summary" : "Get all the managedElements",
+    "paths": {
+        "/lldp/{swid}": {
+            "get": {
+                "summary": "getLLDP",
+                "description": "Save the managedElement",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "swid",
+                        "in": "path",
+                        "description": "get lldp",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/lldpResult"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/managedElements": {
+            "get": {
+                "summary": "Get all the managedElements",
                 "description": "Get all the managedElements",
-                "produces": ["application/json"],
+                "produces": [
+                    "application/json"
+                ],
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -41,12 +83,16 @@
                 }
             }
         },
-        "/managedElement" : {
-            "post" : {
-                "summary" : "Save the managedElement",
+        "/managedElement": {
+            "post": {
+                "summary": "Save the managedElement",
                 "description": "Save the managedElement",
-                "produces": ["application/json"],
-                "consumes": ["application/json"],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
                 "parameters": [
                     {
                         "in": "body",
@@ -56,10 +102,10 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "managedElement" : {
+                                "managedElement": {
                                     "type": "object",
                                     "$ref": "#/definitions/ManagedElement"
-                                } 
+                                }
                             }
                         }
                     }
@@ -83,11 +129,13 @@
                 }
             }
         },
-        "/managedElement/" : {
-            "put" : {
-                "summary" : "Update the managedElements",
+        "/managedElement/": {
+            "put": {
+                "summary": "Update the managedElements",
                 "description": "Update the managedElements",
-                "produces": ["application/json"],
+                "produces": [
+                    "application/json"
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -104,10 +152,10 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "managedElement" : {
+                                "managedElement": {
                                     "type": "object",
                                     "$ref": "#/definitions/ManagedElement"
-                                } 
+                                }
                             }
                         }
                     }
@@ -131,11 +179,13 @@
                 }
             }
         },
-        "/managedElement/{id}" : {
-            "delete" : {
-                "summary" : "Delete the managedElement",
+        "/managedElement/{id}": {
+            "delete": {
+                "summary": "Delete the managedElement",
                 "description": "Delete the managedElement",
-                "produces": ["application/json"],
+                "produces": [
+                    "application/json"
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -164,13 +214,46 @@
                 }
             }
         }
-    }, 
+    },
     "definitions": {
+        "lldpResult": {
+            "jsonrpc": "2.0",
+            "result": [
+                {
+                    "tablesLastChangeTime": 1624763050.876262,
+                    "tablesAgeOuts": 1,
+                    "tablesInserts": 12,
+                    "lldpNeighbors": [
+                        {
+                            "ttl": 120,
+                            "neighborDevice": "sw1",
+                            "neighborPort": "Ethernet3",
+                            "port": "Ethernet1"
+                        },
+                        {
+                            "ttl": 3601,
+                            "neighborDevice": "0a00.2700.0013",
+                            "neighborPort": "0a00.2700.0013",
+                            "port": "Management1"
+                        },
+                        {
+                            "ttl": 120,
+                            "neighborDevice": "sw1",
+                            "neighborPort": "Management1",
+                            "port": "Management1"
+                        }
+                    ],
+                    "tablesDeletes": 9,
+                    "tablesDrops": 0
+                }
+            ],
+            "id": "EapiExplorer-1"
+        },
         "managedElementsResponse": {
             "type": "object",
             "properties": {
                 "_id": {
-                     "type": "integer"
+                    "type": "integer"
                 },
                 "name": {
                     "type": "string"
@@ -179,19 +262,19 @@
                     "type": "string"
                 },
                 "type": {
-                  "type": "string"
+                    "type": "string"
                 },
                 "ipAddress": {
-                  "type": "string"
+                    "type": "string"
                 },
                 "location": {
-                  "type": "string"
+                    "type": "string"
                 },
                 "ssh_id": {
-                  "type": "string"
+                    "type": "string"
                 },
                 "ssh_pw": {
-                  "type": "string"
+                    "type": "string"
                 },
                 "createdAt": {
                     "type": "string"
@@ -210,21 +293,21 @@
                 "description": {
                     "type": "string"
                 },
-                  "type": {
+                "type": {
                     "type": "string"
-                  },
-                  "ipAddress": {
+                },
+                "ipAddress": {
                     "type": "string"
-                  },
+                },
                 "location": {
-                  "type": "string"
+                    "type": "string"
                 },
                 "ssh_id": {
-                  "type": "string"
+                    "type": "string"
                 },
                 "ssh_pw": {
-                  "type": "string"
-                }  
+                    "type": "string"
+                }
             }
         },
         "InvalidResponse": {
@@ -237,7 +320,6 @@
                     "type": "string"
                 }
             }
-
         }
     }
 }
