@@ -20,6 +20,12 @@ class ManagedElementService {
       managedElementId
     );
   }
+
+  async getLLDP(sw) {
+    return await managedElementRepository.getLLDP(
+      sw
+    );
+  }
 }
 
 module.exports = new ManagedElementService();

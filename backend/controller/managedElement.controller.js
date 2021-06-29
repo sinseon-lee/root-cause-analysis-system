@@ -21,5 +21,10 @@ class TodoController {
     logger.info("Controller: deleteManagedElement", managedElementId);
     return await managedElementService.deleteManagedElement(managedElementId);
   }
+
+  async getLLDP(sw) {
+    logger.info("Controller: getlldpNeighbors", sw);
+    return await managedElementService.getLLDP(sw);
+  }
 }
 module.exports = new TodoController();
